@@ -22,14 +22,15 @@ const refs = {
   btn: document.querySelector('.login-btn'),
   inputLogin: document.querySelector('input[name = "email"]'),
   inputPassword: document.querySelector('input[name = "password"]'),
-//   btnEmail: document.querySelector('.btn-email'),
-//   btnPassword: document.querySelector('.btn-password'),
+  todo: document.querySelector('.todo'),
+  btnEmail: document.querySelector('.btn-email'),
+  btnPassword: document.querySelector('.btn-password'),
 };
 
 refs.formElement.addEventListener('input', onSaveData);
 refs.formElement.addEventListener('submit', onSubmit);
-// refs.btnEmail.addEventListener('click', onEmail);
-// refs.btnPassword.addEventListener('click', onPassword);
+refs.btnEmail.addEventListener('click', onEmail);
+refs.btnPassword.addEventListener('click', onPassword);
 
 // В функции onSaveData  будемо зберігати данні, получені з INPUT-ов
 
@@ -55,7 +56,9 @@ function onSubmit(event) {
         refs.btn.textContent = 'Login';
         refs.inputLogin.removeAttribute('readonly');
         refs.inputPassword.removeAttribute('readonly');
-        localStorage.removeItem('form-data');
+      localStorage.removeItem('form-data');
+        refs.todo.style.display = 'none';
+
         return;
     }
   if (!data.email || !data.password) return alert('Enter all fields');
@@ -68,24 +71,24 @@ function onSubmit(event) {
   event.currentTarget.reset();
 }
 
-// function onEmail(e) {
-//     e.preventDefault();
+function onEmail(e) {
+    e.preventDefault();
 
-//     console.log('EMAIL:');
-//     data.email = USER_DATA.email;
-//     localStorage.setItem('form-data', JSON.stringify(data));
-//     refs.inputLogin.value = `${USER_DATA.email}`;
-// }
-// function onPassword(e) {
-//   e.preventDefault();
-//   console.log('PASSWORD:');
-//   data.password = USER_DATA.password;
-//     localStorage.setItem('form-data', JSON.stringify(data));
-//     refs.inputPassword.value = `${USER_DATA.password}`;
-// }
-// let dataBase = {};
-// dataBase = localStorage.getItem('form-data');
-// if(dataBase !== null)console.log(dataBase);
+    console.log('EMAIL:');
+    data.email = USER_DATA.email;
+    localStorage.setItem('form-data', JSON.stringify(data));
+    refs.inputLogin.value = `${USER_DATA.email}`;
+}
+function onPassword(e) {
+  e.preventDefault();
+  console.log('PASSWORD:');
+  data.password = USER_DATA.password;
+    localStorage.setItem('form-data', JSON.stringify(data));
+    refs.inputPassword.value = `${USER_DATA.password}`;
+}
+let dataBase = {};
+dataBase = localStorage.getItem('form-data');
+if(dataBase !== null)console.log(dataBase);
 
 function populateData() {
     if (localStorage.getItem('form-data')) {
@@ -97,6 +100,7 @@ function loginUser() {
      refs.btn.textContent = 'LOG out';
   refs.inputLogin.setAttribute('readonly', true);
   refs.inputPassword.setAttribute('readonly', true);
+  refs.todo.style.display = 'flex';
 }
 populateData()
 
