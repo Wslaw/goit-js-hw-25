@@ -34,7 +34,6 @@ refs.btnEmail.addEventListener('click', onEmail);
 refs.btnPassword.addEventListener('click', onPassword);
 refs.todo.addEventListener('submit', onAddTodo);
 
-// В функции onSaveData  будемо зберігати данні, получені з INPUT-ов
 
 function onSaveData(event) {
   
@@ -52,7 +51,6 @@ function onSaveData(event) {
 function onSubmit(event) {
   event.preventDefault();
   if (refs.btn.textContent === 'LOG out') {
-    console.log('KNOPKAAAAAAAA');
     refs.btn.textContent = 'Login';
     refs.inputLogin.removeAttribute('readonly');
     refs.inputPassword.removeAttribute('readonly');
