@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page title</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
     <!-- <link rel="stylesheet" href="./sass/index.scss" /> -->
     <!-- <script type="module" src="./index.js"></script> -->
   </head>
@@ -13,17 +13,32 @@
 
     <!-- ***********************Task 1************************ -->
     <form class="login-form" id="login-form">
-  <input class="login-input" type="email" name="email" autocomplete="current-password" />
-  <input class="login-input" type="password" name="password" autocomplete="current-password"/>
-  <button class="login-btn" name="button" type="submit">Login</button>
-</form>
-<button class="btn-email">user@mail.com</button>
-<button class="btn-password">secret</button>
+      <input
+        class="login-input"
+        type="email"
+        name="email"
+        autocomplete="current-password"
+      />
+      <input
+        class="login-input"
+        type="password"
+        name="password"
+        autocomplete="current-password"
+      />
+      <button class="login-btn" name="button" type="submit">Login</button>
+    </form>
+    <button class="btn-email">user@mail.com</button>
+    <button class="btn-password">secret</button>
 
-<!-- *****************Task 2****************************************** -->
+    <!-- *****************Task 2****************************************** -->
     <form action="#" class="todo">
       <div class="todo_input">
-        <input type="text" class="todo_text" name="text" placeholder="to do something">
+        <input
+          type="text"
+          class="todo_text"
+          name="text"
+          placeholder="to do something"
+        />
         <button type="submit" class="todo_add"></button>
       </div>
       <select name="priority" id="priority" class="todo_options">
@@ -35,6 +50,6 @@
       <ol class="todo_items"></ol>
     </form>
     <!-- <include src="./partials/example.html"></include> -->
-    <script type="module" src="./script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>

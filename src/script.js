@@ -17,6 +17,7 @@ const USER_DATA = {
 };
 
 const data = {};
+
 const refs = {
   formElement: document.querySelector('#login-form'),
   btn: document.querySelector('.login-btn'),
@@ -31,78 +32,71 @@ refs.formElement.addEventListener('input', onSaveData);
 refs.formElement.addEventListener('submit', onSubmit);
 refs.btnEmail.addEventListener('click', onEmail);
 refs.btnPassword.addEventListener('click', onPassword);
+refs.todo.addEventListener('submit', onAddTodo);
 
 // В функции onSaveData  будемо зберігати данні, получені з INPUT-ов
 
 function onSaveData(event) {
-  console.log(event.target.name);
-  console.log(event.target.value);
-
+  
   // **Деструктуризируем name і value  із event.target***
   const { name, value } = event.target;
-
+  
   // Наступна строка створює записує
   //  в об'єкт data  ключ name со значенням value
   data[name] = value;
-  // console.log(data);
-  // console.log(data.name);
-  // console.log(data.value);
+  console.log(data);
+  console.log(data.name);
+  console.log(data.value);
 }
 
 function onSubmit(event) {
-    event.preventDefault();
-    if (refs.btn.textContent === 'LOG out') {
-        console.log("KNOPKAAAAAAAA");
-        refs.btn.textContent = 'Login';
-        refs.inputLogin.removeAttribute('readonly');
-        refs.inputPassword.removeAttribute('readonly');
-      localStorage.removeItem('form-data');
-        refs.todo.style.display = 'none';
+  event.preventDefault();
+  if (refs.btn.textContent === 'LOG out') {
+    console.log('KNOPKAAAAAAAA');
+    refs.btn.textContent = 'Login';
+    refs.inputLogin.removeAttribute('readonly');
+    refs.inputPassword.removeAttribute('readonly');
+    localStorage.removeItem('form-data');
+    refs.todo.style.display = 'none';
+    return;
+  }
 
-        return;
-    }
   if (!data.email || !data.password) return alert('Enter all fields');
-
   if (USER_DATA.email !== data.email || USER_DATA.password !== data.password)
     return alert('Uncorrect data ');
-
   localStorage.setItem('form-data', JSON.stringify(data));
-      loginUser();
+  loginUser();
   event.currentTarget.reset();
 }
 
 function onEmail(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    console.log('EMAIL:');
-    data.email = USER_DATA.email;
-    localStorage.setItem('form-data', JSON.stringify(data));
-    refs.inputLogin.value = `${USER_DATA.email}`;
+  data.email = USER_DATA.email;
+  localStorage.setItem('form-data', JSON.stringify(data));
+  refs.inputLogin.value = `${USER_DATA.email}`;
 }
 function onPassword(e) {
   e.preventDefault();
-  console.log('PASSWORD:');
   data.password = USER_DATA.password;
-    localStorage.setItem('form-data', JSON.stringify(data));
-    refs.inputPassword.value = `${USER_DATA.password}`;
+  localStorage.setItem('form-data', JSON.stringify(data));
+  refs.inputPassword.value = `${USER_DATA.password}`;
 }
 let dataBase = {};
 dataBase = localStorage.getItem('form-data');
-if(dataBase !== null)console.log(dataBase);
+if (dataBase !== null) console.log("");
 
 function populateData() {
-    if (localStorage.getItem('form-data')) {
-        loginUser()
-    }
+  if (localStorage.getItem('form-data')) {
+    loginUser();
+  }
 }
 
 function loginUser() {
-     refs.btn.textContent = 'LOG out';
+  refs.btn.textContent = 'LOG out';
   refs.inputLogin.setAttribute('readonly', true);
   refs.inputPassword.setAttribute('readonly', true);
   refs.todo.style.display = 'flex';
 }
-populateData()
+populateData();
 
-// Клік по кнопці logout повертає все до початкового вигляду і видаляє дані користувача
-// З локального сховища.
